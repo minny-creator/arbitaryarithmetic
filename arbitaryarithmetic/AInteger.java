@@ -1,4 +1,4 @@
-package arbitaryarithmetic;
+package com.project1;
 
 
 
@@ -6,7 +6,7 @@ public class AInteger{
     String AInteger;
 
     public AInteger(){
-        AInteger = "0" ;
+        this.AInteger = "0" ;
     }
 
     public AInteger parse(String a){
@@ -18,76 +18,86 @@ public class AInteger{
         this.AInteger = AInteger;
     }
 
+    public boolean func(String a,String b){
+        int d=a.length();
+        int e=b.length();
+        if(d<e){
+            return false;
+        }
+        else if(d>e){
+            return true;
+        }
+        else{
+            int i,j=0;
+            d=d-1;
+            for(i=d;i>=0;i--){
+                if(Integer.parseInt(a.substring(i,i+1))>Integer.parseInt(b.substring(i,i+1))){
+                    break;
+                }
+                else if(Integer.parseInt(a.substring(i,i+1))==Integer.parseInt(b.substring(i,i+1))){
+                    j=j+1;
+                }
+            }
+            if(i==(j+1)){
+                return true;
+            }
+            else{
+                return false;
+            }
+
+        }
+    }
+
 
     public AInteger addAIntegers(AInteger a,AInteger b){
         int d=a.AInteger.length();
         int e=b.AInteger.length();
-        if (d>e){
-            int x=d-e;
-            for(int i=1;i<=x;i++){
-                b.AInteger="0"+b.AInteger;
+        int x,f;
+        if(d>=e){
+            x=d-e;
+            f=d-1;
+            if(x!=0){
+                for(int i=1;i<=x;i++){
+                    b.AInteger="0"+b.AInteger;
+                }
             }
-            int l=0;
-            String add="";
-            int f=d-1;
-            for(int i=f;i>=0;i--){
-                int k=Integer.parseInt(a.AInteger.substring(i,i+1))+Integer.parseInt(b.AInteger.substring(i,i+1))+l;
-                l=k/10;
-                add=Integer.toString(k%10)+add;
-            }
-            add=Integer.toString(l)+add;
-            AInteger adAInt = new AInteger(add);
-            return adAInt;
         }
-        else if (d<e){
-            int x=e-d;
+        else{
+            x=e-d;
+            f=e-1;
             for(int i=1;i<=x;i++){
                 a.AInteger="0"+a.AInteger;
             }
-            int l=0;
-            String add="";
-            int f=e-1;
-            for(int i=f;i>=0;i--){
-                int k=Integer.parseInt(a.AInteger.substring(i,i+1))+Integer.parseInt(b.AInteger.substring(i,i+1))+l;
-                l=k/10;
-                add=Integer.toString(k%10)+add;
-            }
-            add=Integer.toString(l)+add;
-            AInteger adAInt = new AInteger(add);
-            return adAInt; 
         }
-        else {
-            int l=0;
-            String add="";
-            int f=d-1;
-            for(int i=f;i>=0;i--){
-                int k=Integer.parseInt(a.AInteger.substring(i,i+1))+Integer.parseInt(b.AInteger.substring(i,i+1))+l;
-                l=k/10;
-                add=Integer.toString(k%10)+add;
-            }
-            add=Integer.toString(l)+add;
-            AInteger adAInt = new AInteger(add);
-            return adAInt; 
+        int l=0;
+        String add="";
+        for(int i=f;i>=0;i--){
+            int k=Integer.parseInt(a.AInteger.substring(i,i+1))+Integer.parseInt(b.AInteger.substring(i,i+1))+l;
+            l=k/10;
+            add=Integer.toString(k%10)+add;
         }
-        
-
-
-
+        if(l!=0){
+            add=Integer.toString(l)+add;
+        }
+        AInteger adAInt = new AInteger(add);
+        return adAInt;
     }
 
 
     public AInteger subAIntegers(AInteger a,AInteger b){
         int d=a.AInteger.length();
         int e=b.AInteger.length();
-        if (d>e){
+        if (d>=e){
             int x=d-e;
-            for(int i=1;i<=x;i++){
-                b.AInteger="0"+b.AInteger;
+            if(x!=0){
+                for(int i=1;i<=x;i++){
+                    b.AInteger="0"+b.AInteger;
+                }
             }
             int l=0;
             String sub="";
-            int f=d-1;
-            for(int i=f;i>=0;i--){
+            d=d-1;
+            for(int i=d;i>=0;i--){
                 int k=Integer.parseInt(a.AInteger.substring(i,i+1))-Integer.parseInt(b.AInteger.substring(i,i+1))-l;
                 if (k<0 && i!=0){
                     k=10+k;
@@ -98,48 +108,13 @@ public class AInteger{
                 }
                 sub=Integer.toString(k)+sub;
             }
-            AInteger adAInt = new AInteger(sub);
-            return adAInt;
-        }
-        else if (d<e){
-            int x=e-d;
-            for(int i=1;i<=x;i++){
-                a.AInteger="0"+a.AInteger;
-            }
-            int l=0;
-            String sub="";
-            int f=e-1;
-            for(int i=f;i>=0;i--){
-                int k=Integer.parseInt(a.AInteger.substring(i,i+1))-Integer.parseInt(b.AInteger.substring(i,i+1))-l;
-                if (k<0 && i!=0){
-                    k=10+k;
-                    l=1;
-                }
-                else{
-                    l=0;
-                }
-                sub=Integer.toString(k)+sub;
-            }
-            AInteger adAInt = new AInteger(sub);
-            return adAInt; 
+            AInteger subAInt = new AInteger(sub);
+            return subAInt;
         }
         else {
-            int l=0;
-            String sub="";
-            int f=d-1;
-            for(int i=f;i>=0;i--){
-                int k=Integer.parseInt(a.AInteger.substring(i,i+1))-Integer.parseInt(b.AInteger.substring(i,i+1))-l;
-                if(k<0&&i!=0){
-                    k=10+k;
-                    l=1;
-                }
-                else{
-                    l=0;
-                }
-            sub=Integer.toString(k)+sub;
-            }
-            AInteger adAInt = new AInteger(sub);
-            return adAInt; 
+            AInteger c = subAIntegers(b, a);
+            c.AInteger = "-" + c.AInteger;
+            return c;
         }
         
         
@@ -154,14 +129,16 @@ public class AInteger{
             String x=b.AInteger;
             e=e-1;
             AInteger result=new AInteger();
-            for(int i=e;i>=0;i--){
+            AInteger res=new AInteger();
+            for(int i=0;i<=e;i++){
                 int y=Integer.parseInt(x.substring(i,i+1));
-                AInteger res = new AInteger();
+                res.AInteger="0";
                 for(int j=0;j<y;j++){
                     res=addAIntegers(a, res);
                 }
                 if (i!=e){
-                    int k=e-(i);
+                    int k=(e-i);
+                
                     for(int j=1;j<=k;j++){
                         res.AInteger=res.AInteger+"0";
                     }
@@ -174,14 +151,15 @@ public class AInteger{
             String x=a.AInteger;
             d=d-1;
             AInteger result=new AInteger();
-            for(int i=d;i>=0;i--){
+            AInteger res=new AInteger();
+            for(int i=0;i<=d;i++){
                 int y=Integer.parseInt(x.substring(i,i+1));
-                AInteger res = new AInteger();
+                res.AInteger="0";
                 for(int j=0;j<y;j++){
-                    res=addAIntegers(a, res);
+                    res=addAIntegers(b, res);
                 }
                 if (i!=d){
-                    int k=d-(i);
+                    int k=(d-i);
                     for(int j=1;j<=k;j++){
                         res.AInteger=res.AInteger+"0";
                     }
@@ -198,23 +176,31 @@ public class AInteger{
         int d=a.AInteger.length();
         int e=b.AInteger.length();
         if((d-e-1)>0){
-            AInteger sres=new AInteger("1");
             int x=(d-e-1);
+            AInteger b1=new AInteger(b.AInteger);
             for(int i=0;i<x;i++){
-                sres.AInteger=sres.AInteger+"0";
+                b1.AInteger=b1.AInteger+"0";
             }
-            a=subAIntegers(a, mulAIntegers(sres, b));
-            AInteger sres4=new AInteger();
+            a=subAIntegers(a, b1);
+            d=a.AInteger.length();
+            AInteger res1=new AInteger();
             for(int i=1;i>=0;i++){
-                AInteger sres2=new AInteger(Integer.toString(i));
-                if(Integer.parseInt(mulAIntegers(sres2, b).AInteger)>Integer.parseInt(a.AInteger)){
-                    AInteger sres3 = new AInteger(Integer.toString(i-1));
-                    sres4 = addAIntegers(sres, sres3);
+                res1.AInteger = Integer.toString(i);
+                AInteger res3 = mulAIntegers(res1, b);
+                if(func(res3.AInteger,a.AInteger)) {
+                    res1.AInteger = Integer.toString(i-1);
+                    AInteger res2 = new AInteger("1");
+                    for(int j=0;j<x;j++){
+                        res2.AInteger = res2.AInteger + "0";
+
+                    }
+                    res1 = addAIntegers(res1, res2);
+                    break;
                     
                 }
                 
             }
-            return sres4;
+            return res1;
 
         }
         else if(d<e){
@@ -222,15 +208,18 @@ public class AInteger{
             return res;
         }
         else{
-            AInteger sres3 = new AInteger();
+            AInteger res = new AInteger();
             for(int i=1;i>=0;i++){
-                AInteger sres2=new AInteger(Integer.toString(i));
-                if(Integer.parseInt(mulAIntegers(sres2, b).AInteger)>Integer.parseInt(a.AInteger)){
-                    sres3 = new AInteger(Integer.toString(i-1));
+                res.AInteger = Integer.toString(i);
+                AInteger res1 =mulAIntegers(res, b);
+        
+                if(func(res1.AInteger,a.AInteger)){
+                    res.AInteger = Integer.toString(i-1);
+                    break;
                 }
-                
             }
-            return sres3;
+            return res;
+        
 
         }
     }
