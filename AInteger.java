@@ -15,39 +15,49 @@ public class AInteger{
     }
 
     public AInteger(String A){
+        if(A.isEmpty()){
+            throw new NumberFormatException("Invalid float value: " + A);
+        }
         int i;
-        if(A[0]=="+" || A[0]=="-"){
+        if(A.substring(0,1).equals("+") || A.substring(0,1).equals("-")){
             i=1;
         }
         else i=0;
+        int num=0;
         for(;i<A.length();i++){
             if(!Pattern.matches("[0-9]", A[i]);){
                 throw new ValueError("Invalid Integer value!!!");
             }
+            else{
+                num=1
+            }
+        }
+        if(num==0){
+            throw new NumberFormatException("Invalid float value: " + A);
         }
         this.AInteger = A;
     }
 //function to tell whether a is greater or not.
     public boolean func(String a,String b){
-        if(a[0]=="-" && b[0]=="-"){
+        if(a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
             a=a.substring(1);
             b=b.substring(1);
             return func(b,a);
         }
-        else if(a[0]=="-" && b[0]!="-"){
+        else if(a.substring(0,1).equals("-") && !b.substring(0,1).equals("-")){
             return false;
         }
-        else if(a[0]!="-" && b[0]=="-"){
+        else if(!a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
             b=b.substring(1);
-            if(a[0]=="+")a=a.substring(1);
+            if(a.substring(0,1).equals("+"))a=a.substring(1);
             int k=0;
             for(int i=0;i<a.length();i++){
-                if(a[i]!="0"){k=1;break;}
+                if(!a.substring(i,i+1).equals("0")){k=1;break;}
             }
             if(k!=0)return true;
             else{
                 for(int i=0;i<b.length;i++){
-                    if(b[i]!="0"){k=1;break;}
+                    if(!b.substring(i,i+1).equals("0")){k=1;break;}
                 }
                 if(k!=0)return true;
                 else return false;
@@ -78,19 +88,19 @@ public class AInteger{
 
 
     public AInteger addAIntegers(AInteger a,AInteger b){
-        if(a[0]=="-" && b[0]=="-"){
-            a=a.substring(1);
-            b=b.substring(1);
+        if(a.AInteger.substring(0,1).equals("-") && b.AInteger.substring(0,1).equals("-")){
+            a.AInteger=a.AInteger.substring(1);
+            b.AInteger=b.AInteger.substring(1);
             return "-"+addAIntegers(a,b);
         }
-        else if(a[0]=="-" && b[0]!="-"){
-            a=a.substring(1);
-            if(b[0]=="+")b=b.substring(1);
+        else if(a.AInteger.substring(0,1).equals("-") && !b.AInteger.substring(0,1),equals("-")){
+            a.AInteger=a.AInteger.substring(1);
+            if(b.AInteger.substring(0,1).equals("+"))b.AInteger=b.AInteger.substring(1);
             return subAIntegers(b,a);
         }
-        else if(a[0]!="-" && b[0]=="-"){
-            b=b.substring(1);
-            if(a[0]=="+")a=a.substring(1);
+        else if(!a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
+            b.AInteger=b.AInteger.substring(1);
+            if(a.substring(0,1).equals("+"))a.AInteger=a.AInteger.substring(1);
             return subAIntegers(a,b);
         }
         int d=a.AInteger.length();
@@ -126,19 +136,19 @@ public class AInteger{
 
 
     public AInteger subAIntegers(AInteger a,AInteger b){
-        if(a[0]=="-" && b[0]=="-"){
-            a=a.substring(1);
-            b=b.substring(1);
+        if(a.AInteger.substring(0,1).equals("-") && b.AInteger.substring(0,1).equals("-")){
+            a.AInteger=a.AInteger.substring(1);
+            b.AInteger=b.AInteger.substring(1);
             return subAIntegers(b,a);
         }
-        else if(a[0]=="-" && b[0]!="-"){
-            a=a.substring(1);
-            if(b[0]=="+")b=b.substring(1);
+        else if(a.AInteger.substring(0,1).equals("-") && !b.AInteger.substring(0,1).equals("-")){
+            a.AInteger=a.AInteger.substring(1);
+            if(b.AInteger.substing(0,1).equals("+"))b.AInteger=b.AInteger.substring(1);
             return "-"+addAIntegers(b,a);
         }
-        else if(a[0]!="-" && b[0]=="-"){
-            b=b.substring(1);
-            if(a[0]=="+")a=a.substring(1);
+        else if(!a.AInteger.substring(0,1).equals("-") && b.AInteger.substring(0,1).equals("-")){
+            b.AInteger=b.AInteger.substring(1);
+            if(a.AInteger.substring(0,1).equals("+"))a.AInteger=a.AInteger.substring(1);
             return addAIntegers(a,b);
         }
         int d=a.AInteger.length();
@@ -165,12 +175,12 @@ public class AInteger{
                 sub=Integer.toString(k)+sub;
             }
             AInteger subAInt = new AInteger(sub);
-            while(subAInt.AInteger[0]=="0"){subAInt.AInteger=subAInt.AInteger.substring(1);}
+            while(subAInt.AInteger.substring(0,1).equals("0")){subAInt.AInteger=subAInt.AInteger.substring(1);}
             return subAInt;
         }
         else if(d<e || (d==e && func(b.AInteger,a.AInteger))){
             AInteger c = subAIntegers(b, a);
-            while(c.AInteger[0]=="0"){c.AInteger=c.AInteger.substring(1);}
+            while(c.AInteger.substring(0,1).equals("0")){c.AInteger=c.AInteger.substring(1);}
             c.AInteger = "-" + c.AInteger;
             return c;
         }
@@ -183,19 +193,19 @@ public class AInteger{
 
 
     public AInteger mulAIntegers(AInteger a,AInteger b){
-        if(a[0]=="-" && b[0]=="-"){
-            a=a.substring(1);
-            b=b.substring(1);
+        if(a.AInteger.substring(0,1).equals("-") && b.AInteger.substring(0,1).equals("-")){
+            a.AInteger=a.AInteger.substring(1);
+            b.AInteger=b.AInteger.substring(1);
             return mulAIntegers(a,b);
         }
-        else if(a[0]=="-" && b[0]!="-"){
-            a=a.substring(1);
-            if(b[0]=="+")b=b.substring(1);
+        else if(a.AInteger.substring(0,1).equals("-") && !b.AInteger.substring(0,1).equals("-")){
+            a.AInteger=a.AInteger.substring(1);
+            if(b.AInteger.substring(0,1).equals("+"))b.AInteger=b.AInteger.substring(1);
             return "-"+mulAIntegers(b,a);
         }
-        else if(a[0]!="-" && b[0]=="-"){
-            b=b.substring(1);
-            if(a[0]=="+")a=a.substring(1);
+        else if(!a.AInteger.substring(0,1).equals("-") && b.AInteger.substring(0,1).equals("-")){
+            b.AInteger=b.AInteger.substring(1);
+            if(a.AInteger.substring(0,1).equals("+"))a.AInteger=a.AInteger.substring(1);
             return "-"+mulAIntegers(a,b);
         }
         int d=a.AInteger.length();
@@ -247,19 +257,19 @@ public class AInteger{
 
 
     public AInteger divAIntegers(AInteger a,AInteger b){
-        if(a[0]=="-" && b[0]=="-"){
-            a=a.substring(1);
-            b=b.substring(1);
+        if(a.AInteger.substring(0,1).equals("-") && b.AInteger.substring(0,1).equals("-")){
+            a.AInteger=a.AInteger.substring(1);
+            b.AInteger=b.AInteger.substring(1);
             return divAIntegers(a,b);
         }
-        else if(a[0]=="-" && b[0]!="-"){
-            a=a.substring(1);
-            if(b[0]=="+")b=b.substring(1);
+        else if(a.AInteger.substring(0,1).equals("-") && !b.AInteger.substring(0,1).equals("-")){
+            a.AInteger=a.AInteger.substring(1);
+            if(b.AInteger.substring(0,1).equals("+"))b.AInteger=b.AInteger.substring(1);
             return "-"+divAIntegers(a,b);
         }
-        else if(a[0]!="-" && b[0]=="-"){
-            b=b.substring(1);
-            if(a[0]=="+")a=a.substring(1);
+        else if(!a.AInteger.substring(0,1).equals("-") && b.AInteger.substring(0,1).equals("-")){
+            b.AInteger=b.AInteger.substring(1);
+            if(a.AInteger.substring(0,1).equals("+"))a.AInteger=a.AInteger.substring(1);
             return "-"+divAIntegers(a,b);
         }
         int d=a.AInteger.length();
