@@ -98,9 +98,9 @@ public class AInteger{
             if(b.AInteger.substring(0,1).equals("+"))b.AInteger=b.AInteger.substring(1);
             return subAIntegers(b,a);
         }
-        else if(!a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
+        else if(!a.AInteger.substring(0,1).equals("-") && b.AInteger.substring(0,1).equals("-")){
             b.AInteger=b.AInteger.substring(1);
-            if(a.substring(0,1).equals("+"))a.AInteger=a.AInteger.substring(1);
+            if(a.AInteger.substring(0,1).equals("+"))a.AInteger=a.AInteger.substring(1);
             return subAIntegers(a,b);
         }
         int d=a.AInteger.length();
