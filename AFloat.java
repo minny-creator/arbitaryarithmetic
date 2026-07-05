@@ -17,21 +17,53 @@ public class AFloat{
     }
 
 
-    public AFloat(String a){int i;
-        if(a[0]=="+" || a[0]=="-")i=1;
+    public AFloat(String a){
+        if (a == null || a.isEmpty()) {
+            throw new NumberFormatException("Invalid float value: " + a);
+        }
+        int i;
+        if(a.substring(0,1).equals("+") || a.substring(0,1).equals("-"))i=1;
         else i=0;
+        int dot=0;
+        int num=0;
         for(;i<a.length();i++){
-            if(a[i]=="."){
+            if(a.substring(i,i+1).equals(".")){
+                dot=1;
                 break;
             }
-            else if(!Pattern.matches("[0-9]", a[i])){
-                throw new TypeException("Invalid float value!!!");
+            else if(!Pattern.matches("[0-9]", a.substring(i,i+1))){
+                throw new IllegalArgumentException("Invalid float value!!!");
+            }
+            else{
+                num=1;
+            }
+        }
+        if(i==a.length() || i==a.length()-1){
+            if(num==0){
+                throw new NumberFormatException("Invalid float value: " + a);
+            }
+            if(dot==1){
+                a=a+"0";
+            }
+            else{
+                a=a+".0";
+            }
+        }
+        else{
+            if(num==0){
+                a=a.substring(0,i)+"0"+a.substring(i);
             }
         }
         for(i=i+1;i<a.length();i++){
-            if(!Pattern.matches("[0-9]", a[i])){
-                throw new TypeException("Invalid float value!!!");
+            if(!Pattern.matches("[0-9]", a.substring(i,i+1))){
+                throw new IllegalArgumentException("Invalid float value!!!");
             }
+            else{
+                num=1;
+            }
+        }
+        if(num==0){
+            throw new NumberFormatException("Invalid float value: " + a);
         }
         this.AFloat=a;
     }
@@ -39,16 +71,16 @@ public class AFloat{
 
     public AFloat addAFloat(AFloat a,AFloat b){
         
-        if(a[0]=="-" && b[0]!="-"){
+        if(a.substring(0,1).equals("-") && !b.substring(0,1).equals("-")){
             a=a.substring(1);
             return subAFloat(b,a);
         }
-        else if(a[0]=="-" && b[0]=="-"){
+        else if(a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
             a=a.substring(1);
             b=b.substring(1);
             return "-"+addAFloat(a,b);
         }
-        else if(a[0]!="-" && b[0]=="-"){
+        else if(!a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
             b=b.substring(1);
             return subAFloat(a,b);
         }
@@ -102,16 +134,16 @@ public class AFloat{
 
     public AFloat subAFloat(AFloat a,AFloat b){
         
-        if(a[0]=="-" && b[0]!="-"){
+        if(a.substring(0,1).equals("-") && !b.substring(0,1).equals("-")){
             a=a.substring(1);
             return "-"+addAFloat(b,a);
         }
-        else if(a[0]=="-" && b[0]=="-"){
+        else if(a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
             a=a.substring(1);
             b=b.substring(1);
             return subAFloat(b,a);
         }
-        else if(a[0]!="-" && b[0]=="-"){
+        else if(!a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
             b=b.substring(1)
             return addAFloat(a,b);
         }
@@ -156,7 +188,7 @@ public class AFloat{
         a1 = subAIntegers(a1,b1);
         //d-k_d-1
         if(a1.AInteger.length()==d-k_d-1){
-            if(a1.AInteger[0]=="-"){a.AFloat="-0.0";a1.AInteger=a1.AInteger.substring(1);}
+            if(a1.AInteger.substring(0,1).equals("-")){a.AFloat="-0.0";a1.AInteger=a1.AInteger.substring(1);}
             else a.AFloat="0.";
             a.AFloat=a.AFloat+a1.AInteger;            
         }
@@ -166,7 +198,7 @@ public class AFloat{
             a.AFloat=a.AFloat+a1.substring(a1.AInteger.length()-(d-k_d-1));
         }
         else{
-            if(a1.AInteger[0]=="-"){a.AFloat="-0.";a1.AInteger=a.AInteger.substring(1);}
+            if(a1.AInteger.substring(0,1).equals("-")){a.AFloat="-0.";a1.AInteger=a.AInteger.substring(1);}
             else a.AFloat="0.";
             for(i=1;i<=((d-k_d-1)-a.AInteger.length());i++){
                 a1.AInteger="0"+a1.AInteger;
@@ -179,16 +211,16 @@ public class AFloat{
 
     public AFloat mulAFloat(AFloat a,AFloat b){
         
-        if(a[0]=="-" && b[0]!="-"){
+        if(a.substring(0,1).equals("-") && !b.substring(0,1).equals("-")){
             a=a.substring(1);
             return "-"+mulAFloat(b,a);
         }
-        else if(a[0]=="-" && b[0]=="-"){
+        else if(a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
             a=a.substring(1);
             b=b.substring(1);
             return mulAFloat(a,b);
         }
-        else if(a[0]!="-" && b[0]=="-"){
+        else if(!a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
             b=b.substring(1);
             return "-"+mulAFloat(a,b);
         }
@@ -224,16 +256,16 @@ public class AFloat{
 
     public AFloat divAFloat(AFloat a,AFloat b){
         
-        if(a[0]=="-" && b[0]!="-"){
+        if(a.substring(0,1).equals("-") && !b.substring(0,1).equals("-")){
             a=a.substring(1);
             return "-"+divAFloat(a,b);
         }
-        else if(a[0]=="-" && b[0]=="-"){
+        else if(a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
             a=a.substring(1);
             b=b.substring(1);
             return divAFloat(a,b);
         }
-        else if(a[0]!="-" && b[0]=="-"){
+        else if(!a.substring(0,1).equals("-") && b.substring(0,1).equals("-")){
             b=b.substring(1);
             return "-"+divAFloat(a,b);
         }
