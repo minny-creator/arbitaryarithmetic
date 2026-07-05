@@ -1,5 +1,5 @@
 package com.project1;
-
+import java.util.regex.Pattern;
 
 
 public class AInteger{
@@ -14,11 +14,45 @@ public class AInteger{
         return b;
     }
 
-    public AInteger(String AInteger){
-        this.AInteger = AInteger;
+    public AInteger(String A){
+        int i;
+        if(A[0]=="+" || A[0]=="-"){
+            i=1;
+        }
+        else i=0;
+        for(;i<A.length();i++){
+            if(!Pattern.matches("[0-9]", A[i]);){
+                throw new ValueError("Invalid Integer value!!!");
+            }
+        }
+        this.AInteger = A;
     }
 //function to tell whether a is greater or not.
     public boolean func(String a,String b){
+        if(a[0]=="-" && b[0]=="-"){
+            a=a.substring(1);
+            b=b.substring(1);
+            return func(b,a);
+        }
+        else if(a[0]=="-" && b[0]!="-"){
+            return false;
+        }
+        else if(a[0]!="-" && b[0]=="-"){
+            b=b.substring(1);
+            if(a[0]=="+")a=a.substring(1);
+            int k=0;
+            for(int i=0;i<a.length();i++){
+                if(a[i]!="0"){k=1;break;}
+            }
+            if(k!=0)return true;
+            else{
+                for(int i=0;i<b.length;i++){
+                    if(b[i]!="0"){k=1;break;}
+                }
+                if(k!=0)return true;
+                else return false;
+            }
+        }
         int d=a.length();
         int e=b.length();
         if(d<e){
@@ -44,6 +78,21 @@ public class AInteger{
 
 
     public AInteger addAIntegers(AInteger a,AInteger b){
+        if(a[0]=="-" && b[0]=="-"){
+            a=a.substring(1);
+            b=b.substring(1);
+            return "-"+addAIntegers(a,b);
+        }
+        else if(a[0]=="-" && b[0]!="-"){
+            a=a.substring(1);
+            if(b[0]=="+")b=b.substring(1);
+            return subAIntegers(b,a);
+        }
+        else if(a[0]!="-" && b[0]=="-"){
+            b=b.substring(1);
+            if(a[0]=="+")a=a.substring(1);
+            return subAIntegers(a,b);
+        }
         int d=a.AInteger.length();
         int e=b.AInteger.length();
         int x,f;
@@ -77,6 +126,21 @@ public class AInteger{
 
 
     public AInteger subAIntegers(AInteger a,AInteger b){
+        if(a[0]=="-" && b[0]=="-"){
+            a=a.substring(1);
+            b=b.substring(1);
+            return subAIntegers(b,a);
+        }
+        else if(a[0]=="-" && b[0]!="-"){
+            a=a.substring(1);
+            if(b[0]=="+")b=b.substring(1);
+            return "-"+addAIntegers(b,a);
+        }
+        else if(a[0]!="-" && b[0]=="-"){
+            b=b.substring(1);
+            if(a[0]=="+")a=a.substring(1);
+            return addAIntegers(a,b);
+        }
         int d=a.AInteger.length();
         int e=b.AInteger.length();
         if (d>e || (d==e && func(a.AInteger,b.AInteger))){
@@ -119,6 +183,21 @@ public class AInteger{
 
 
     public AInteger mulAIntegers(AInteger a,AInteger b){
+        if(a[0]=="-" && b[0]=="-"){
+            a=a.substring(1);
+            b=b.substring(1);
+            return mulAIntegers(a,b);
+        }
+        else if(a[0]=="-" && b[0]!="-"){
+            a=a.substring(1);
+            if(b[0]=="+")b=b.substring(1);
+            return "-"+mulAIntegers(b,a);
+        }
+        else if(a[0]!="-" && b[0]=="-"){
+            b=b.substring(1);
+            if(a[0]=="+")a=a.substring(1);
+            return "-"+mulAIntegers(a,b);
+        }
         int d=a.AInteger.length();
         int e=b.AInteger.length();
         if(d>e){
@@ -168,6 +247,21 @@ public class AInteger{
 
 
     public AInteger divAIntegers(AInteger a,AInteger b){
+        if(a[0]=="-" && b[0]=="-"){
+            a=a.substring(1);
+            b=b.substring(1);
+            return divAIntegers(a,b);
+        }
+        else if(a[0]=="-" && b[0]!="-"){
+            a=a.substring(1);
+            if(b[0]=="+")b=b.substring(1);
+            return "-"+divAIntegers(a,b);
+        }
+        else if(a[0]!="-" && b[0]=="-"){
+            b=b.substring(1);
+            if(a[0]=="+")a=a.substring(1);
+            return "-"+divAIntegers(a,b);
+        }
         int d=a.AInteger.length();
         int e=b.AInteger.length();
         if((d-e)>0){
