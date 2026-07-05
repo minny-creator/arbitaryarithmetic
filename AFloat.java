@@ -40,12 +40,13 @@ public class AFloat{
                 break;
             }
         }
+        AInteger a1,b1;
         if(d-k_d>e-k_e){
             for(i=1;i<=(d-k_d-(e-k_e));i++){
                 b.AFloat=b.AFloat+"0";
             }
-            AInteger a1 = new AInteger(a.substring(0,k_d));
-            AInteger b1 = new AInteger(b.substring(0,k_d));
+            a1 = new AInteger(a.substring(0,k_d));
+            b1 = new AInteger(b.substring(0,k_d));
             a1.AInteger=a1.AInteger+a.substring(k_d+1);
             b1.AInteger=b1.AInteger+b.substring(k_d+1);
         }
@@ -53,8 +54,8 @@ public class AFloat{
             for(i=1;i<=e-k_e-(d-k_d);i++){
                 a.AFloat=a.AFloat+"0";
             }
-            AInteger a1 = new AInteger(a.substring(0,k_e));
-            AInteger b1 = new AInteger(b.substring(0,k_e));
+            a1 = new AInteger(a.substring(0,k_e));
+            b1 = new AInteger(b.substring(0,k_e));
             a1.AInteger=a1.AInteger+a.substring(k_e+1);
             b1.AInteger=b1.AInteger+b.substring(k_e+1);
             k_d=k_e;
@@ -90,12 +91,13 @@ public class AFloat{
                 break;
             }
         }
+        AInteger a1,b1;
         if(d-k_d>e-k_e){
             for(i=1;i<=(d-k_d-(e-k_e));i++){
                 b.AFloat=b.AFloat+"0";
             }
-            AInteger a1 = new AInteger(a.substring(0,k_d));
-            AInteger b1 = new AInteger(b.substring(0,k_d));
+            a1 = new AInteger(a.substring(0,k_d));
+            b1 = new AInteger(b.substring(0,k_d));
             a1.AInteger=a1.AInteger+a.substring(k_d+1);
             b1.AInteger=b1.AInteger+b.substring(k_d+1);
         }
@@ -103,8 +105,8 @@ public class AFloat{
             for(i=1;i<=e-k_e-(d-k_d);i++){
                 a.AFloat=a.AFloat+"0";
             }
-            AInteger a1 = new AInteger(a.substring(0,k_e));
-            AInteger b1 = new AInteger(b.substring(0,k_e));
+            a1 = new AInteger(a.substring(0,k_e));
+            b1 = new AInteger(b.substring(0,k_e));
             a1.AInteger=a1.AInteger+a.substring(k_e+1);
             b1.AInteger=b1.AInteger+b.substring(k_e+1);
             k_d=k_e;
