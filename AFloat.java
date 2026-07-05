@@ -72,6 +72,7 @@ public class AFloat{
     public AFloat addAFloat(AFloat a,AFloat b){
         
         if(a.AFloat.substring(0,1).equals("-") && !b.AFloat.substring(0,1).equals("-")){
+            if(b.AFloat.substring(0,1).equals("+"))b.AFloat=b.AFloat.substring(1);
             a.AFloat=a.AFloat.substring(1);
             return subAFloat(b,a);
         }
@@ -81,6 +82,7 @@ public class AFloat{
             return "-"+addAFloat(a,b);
         }
         else if(!a.AFloat.substring(0,1).equals("-") && b.AFloat.substring(0,1).equals("-")){
+            if(a.AFloat.substring(0,1).equals("+"))a.AFloat=a.AFloat.substring(1);
             b.AFloat=b.AFloat.substring(1);
             return subAFloat(a,b);
         }
@@ -135,6 +137,7 @@ public class AFloat{
     public AFloat subAFloat(AFloat a,AFloat b){
         
         if(a.AFloat.substring(0,1).equals("-") && !b.AFloat.substring(0,1).equals("-")){
+            if(b.AFloat.substring(0,1).equals("+"))b.AFloat=b.AFloat.substring(1);
             a.AFloat=a.AFloat.substring(1);
             return "-"+addAFloat(b,a);
         }
@@ -144,6 +147,7 @@ public class AFloat{
             return subAFloat(b,a);
         }
         else if(!a.AFloat.substring(0,1).equals("-") && b.AFloat.substring(0,1).equals("-")){
+            if(a.AFloat.substring(0,1).equals("+"))a.AFloat=a.AFloat.substring(1);
             b.AFloat=b.AFloat.substring(1)
             return addAFloat(a,b);
         }
@@ -212,6 +216,7 @@ public class AFloat{
     public AFloat mulAFloat(AFloat a,AFloat b){
         
         if(a.AFloat.substring(0,1).equals("-") && !b.AFloat.substring(0,1).equals("-")){
+            if(b.AFloat.substring(0,1).equals("+"))b.AFloat=b.AFloat.substring(1);
             a.AFloat=a.AFloat.substring(1);
             return "-"+mulAFloat(b,a);
         }
@@ -221,6 +226,7 @@ public class AFloat{
             return mulAFloat(a,b);
         }
         else if(!a.AFloat.substring(0,1).equals("-") && b.AFloat.substring(0,1).equals("-")){
+            if(a.AFloat.substring(0,1).equals("+"))a.AFloat=a.AFloat.substring(1);
             b.AFloat=b.AFloat.substring(1);
             return "-"+mulAFloat(a,b);
         }
@@ -257,6 +263,7 @@ public class AFloat{
     public AFloat divAFloat(AFloat a,AFloat b){
         
         if(a.AFloat.substring(0,1).equals("-") && !b.AFloat.substring(0,1).equals("-")){
+            if(b.AFloat.substring(0,1).equals("+"))b.AFloat=b.AFloat.substring(1);
             a.AFloat=a.AFloat.substring(1);
             return "-"+divAFloat(a,b);
         }
@@ -266,6 +273,7 @@ public class AFloat{
             return divAFloat(a,b);
         }
         else if(!a.AFloat.substring(0,1).equals("-") && b.AFloat.substring(0,1).equals("-")){
+            if(a.AFloat.substring(0,1).equals("+"))a.AFloat=a.AFloat.substring(1);
             b.AFloat=b.AFloat.substring(1);
             return "-"+divAFloat(a,b);
         }
