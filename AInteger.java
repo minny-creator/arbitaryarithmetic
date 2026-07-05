@@ -101,10 +101,12 @@ public class AInteger{
                 sub=Integer.toString(k)+sub;
             }
             AInteger subAInt = new AInteger(sub);
+            while(subAInt.AInteger[0]=="0"){subAInt.AInteger=subAInt.AInteger.substring(1);}
             return subAInt;
         }
         else if(d<e || (d==e && func(b.AInteger,a.AInteger))){
             AInteger c = subAIntegers(b, a);
+            while(c.AInteger[0]=="0"){c.AInteger=c.AInteger.substring(1);}
             c.AInteger = "-" + c.AInteger;
             return c;
         }
