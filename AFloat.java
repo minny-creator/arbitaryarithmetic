@@ -261,7 +261,16 @@ public class AFloat{
 
 
     public AFloat divAFloat(AFloat a,AFloat b){
-        
+        int i;
+        if(b.AFloat.substring(0,1).equals("+") || b.AFloat.substring(0,1).equals("-"))i=1;
+        else i=0;
+        while(i<b.AFloat.length()){
+            if(!b.AFloat.substring(i,i+1).equals("0") && !b.AFloat.substring(i,i+1).equals("."))break;
+            else i++;
+        }
+        if(i==b.AFloat.length()){
+            throw new ArithmeticException("Division By Zero!!!");
+        }
         if(a.AFloat.substring(0,1).equals("-") && !b.AFloat.substring(0,1).equals("-")){
             if(b.AFloat.substring(0,1).equals("+"))b.AFloat=b.AFloat.substring(1);
             a.AFloat=a.AFloat.substring(1);
