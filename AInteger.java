@@ -257,6 +257,18 @@ public class AInteger{
 
 
     public AInteger divAIntegers(AInteger a,AInteger b){
+        int i;
+        if(b.AInteger.substring(0,1).equals("+") || b.AInteger.substring(0,1).equals("-")){
+            i=1;
+        }
+        else i=0;
+        while(i<b.AInteger.length()){
+            if(!b.AInteger.substring(i,i+1).equals("0"))break;
+            else i++;
+        }
+        if(i==b.AInteger.length()){
+            throw new ArithmeticException("Division By Zero!!!");
+        }
         if(a.AInteger.substring(0,1).equals("-") && b.AInteger.substring(0,1).equals("-")){
             a.AInteger=a.AInteger.substring(1);
             b.AInteger=b.AInteger.substring(1);
