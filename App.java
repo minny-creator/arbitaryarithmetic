@@ -21,25 +21,11 @@ public class App{
                     AInteger a = new AInteger(args[2]);
                     AInteger b = new AInteger(args[3]);
                     System.out.println(a.mulAIntegers(a,b).AInteger);
-
                 }
                 else if(args[1].equals("div")){
-                    if(args[3].length()==1){
-                        if(Integer.parseInt(args[3])==0){
-                            System.err.println("Division by zero error");
-                        }
-                        else{
-                            AInteger a = new AInteger(args[2]);
-                            AInteger b = new AInteger(args[3]);
-                            System.out.println(a.divAIntegers(a,b).AInteger);
-
-                        }
-                    }
-                    else{
-                        AInteger a = new AInteger(args[2]);
-                        AInteger b = new AInteger(args[3]);
-                        System.out.println(a.divAIntegers(a,b).AInteger);
-                    }
+                    AInteger a = new AInteger(args[2]);
+                    AInteger b = new AInteger(args[3]);
+                    System.out.println(a.divAIntegers(a,b).AInteger);
                 }
                 else{
                     System.err.println("invalid_arithmetic_operation_error");
@@ -65,25 +51,10 @@ public class App{
 
                 }
                 else if(args[1].equals("div")){
-                    if(args[3].length()<=5){
-                        if(Float.parseFloat(args[3])!=0){
-                            AFloat a = new AFloat(args[2]);
-                            AFloat b = new AFloat(args[3]);
-                            System.out.println(a.divAFloat(a,b).AFloat);
-
-                        }
-                        else{
-                            System.err.println("Division by zero error");
-                        }
-
-                    }
-                    else{
-                        
                         AFloat a = new AFloat(args[2]);
                         AFloat b = new AFloat(args[3]);
-                        System.out.println(a.divAFloat(a,b).AFloat);
-                    }
-                
+                        int num=args[4];
+                        System.out.println(a.divAFloat(a,b,num).AFloat);
                 }
                 else{
                     System.err.println("invalid_arithmetic_operation_error");
